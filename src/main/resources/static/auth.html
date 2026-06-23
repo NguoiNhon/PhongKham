@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+    <title>Đăng nhập / Đăng ký — TYT Quận Thanh Xuân</title>
+
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/auth.css"/>
+</head>
+
+<body>
+
+<script src="js/app.js"></script>
+<script>
+    renderHeader("login.html");
+</script>
+
+<!-- HERO -->
+<section class="lg-hero">
+    <div class="lg-hero-grid"></div>
+
+    <div class="container lg-hero-inner">
+
+        <span class="lg-eyebrow">
+            🔐 Khu vực thành viên
+        </span>
+
+        <h1 class="lg-title">
+            Đăng nhập tài khoản<br/>
+            <span>TYT Quận Thanh Xuân</span>
+        </h1>
+
+        <p class="lg-lead">
+            Truy cập nhanh chóng, an toàn để đặt lịch khám,
+            theo dõi lịch sử khám bệnh và quản lý hồ sơ sức khỏe cá nhân.
+        </p>
+
+        <div class="lg-meta">
+            <span class="lg-chip">⚡ Truy cập tức thì</span>
+            <span class="lg-chip">🔒 Bảo mật cao</span>
+            <span class="lg-chip">📱 OTP qua email</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- AUTH -->
+<section class="lg-section">
+
+    <div class="container lg-container">
+
+        <div class="lg-card">
+
+            <!-- TITLE -->
+            <h1 id="title" class="lg-main-title">
+                Đăng nhập
+            </h1>
+
+            <p class="lg-sub">
+                Truy cập tài khoản của bạn tại TYT Quận Thanh Xuân.
+            </p>
+
+            <!-- FORM -->
+            <form class="lg-form"
+                  id="form"
+                  onsubmit="return submitForm(event)">
+
+                <!-- NAME -->
+                <div id="nameWrap"
+                     style="display:none">
+
+                    <label>
+                        Họ và tên
+
+                        <input type="text"
+                               id="name"
+                               placeholder="Nhập họ và tên"/>
+                    </label>
+                </div>
+
+                <!-- USERNAME -->
+                <div>
+                    <label>
+                        Tên tài khoản
+
+                        <input type="text"
+                               id="username"
+                               required
+                               placeholder="Nhập tên tài khoản"/>
+                    </label>
+                </div>
+
+                <!-- EMAIL -->
+                <div id="emailWrap"
+                     style="display:none">
+
+                    <label>
+                        Email
+
+                        <input type="email"
+                               id="email"
+                               placeholder="Nhập email"/>
+                    </label>
+                </div>
+
+                <!-- DOB -->
+                <div id="dobWrap"
+                     style="display:none">
+
+                    <label>
+                        Ngày sinh
+
+                        <input type="date"
+                               id="dateOfBirth"/>
+                    </label>
+                </div>
+
+                <!-- GENDER -->
+                <div id="genderWrap"
+                     style="display:none">
+
+                    <label>
+                        Giới tính
+
+                        <select id="gender">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </label>
+                </div>
+
+                <!-- PHONE -->
+                <div id="phoneWrap"
+                     style="display:none">
+
+                    <label>
+                        Số điện thoại
+
+                        <input type="text"
+                               id="phone"
+                               placeholder="Nhập số điện thoại"/>
+                    </label>
+                </div>
+
+                <!-- PASSWORD -->
+                <div>
+                    <label>
+                        Mật khẩu
+
+                        <input type="password"
+                               id="password"
+                               required
+                               minlength="6"
+                               placeholder="••••••••"/>
+                    </label>
+                </div>
+
+                <!-- FORGOT -->
+                <div class="lg-row">
+                    <a href="forgot-password.html"
+                       class="lg-link">
+
+                        Quên mật khẩu?
+                    </a>
+                </div>
+
+                <!-- SUBMIT -->
+                <button class="lg-btn"
+                        id="submitBtn"
+                        type="submit">
+
+                    Đăng nhập
+                </button>
+
+            </form>
+
+            <!-- OTP -->
+            <div id="otpSection"
+                 class="lg-otp"
+                 style="display:none">
+
+                <h3 class="lg-h2">
+                    Xác thực email
+                </h3>
+
+                <p class="lg-sub">
+                    Nhập mã OTP đã gửi đến email của bạn.
+                </p>
+
+                <div class="lg-form">
+
+                    <label>
+                        Email
+
+                        <input type="email"
+                               id="verifyEmail"
+                               placeholder="Nhập email"/>
+                    </label>
+
+                    <label>
+                        Mã OTP
+
+                        <input type="text"
+                               id="verifyOtp"
+                               placeholder="Nhập OTP"/>
+                    </label>
+
+                    <button type="button"
+                            class="lg-btn"
+                            onclick="verifyEmailOtp()">
+
+                        Xác thực
+                    </button>
+
+                    <button class="lg-btn lg-btn-ghost"
+                            onclick="resendOtp()">
+
+                        Gửi lại OTP
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- LINKS -->
+            <div class="lg-switch">
+
+                <div id="link1">
+                    <button class="lg-link-btn"
+                            onclick="setMode('register')">
+
+                        Chưa có tài khoản? Đăng ký
+                    </button>
+                </div>
+
+                <div id="link2"
+                     style="display:none">
+
+                    <button class="lg-link-btn"
+                            onclick="setMode('login')">
+
+                        Đã có tài khoản? Đăng nhập
+                    </button>
+                </div>
+
+                <a href="index.html"
+                   class="lg-link muted">
+
+                    ← Về trang chủ
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+    renderFooter();
+</script>
+
+<script src="js/auth.js"></script>
+
+</body>
+</html>

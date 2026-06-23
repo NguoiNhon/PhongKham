@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Quản lý lịch khám — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/appointmentmanage.css"/>
+</head>
+<body>
+
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/appointmentmanage.api.js"></script>
+<script src="js/appointmentmanage.js"></script>
+
+<script>renderHeader();</script>
+
+<!-- HERO -->
+<section class="apm-hero">
+  <div class="apm-hero-grid"></div>
+  <div class="container apm-hero-inner">
+    <span class="apm-eyebrow">📅 Quản trị lịch khám</span>
+    <h1 class="apm-title">Quản lý lịch khám<br/><span>của toàn hệ thống</span></h1>
+    <p class="apm-lead">
+      Theo dõi, xác nhận và điều phối toàn bộ lịch khám của Trung tâm Y tế
+      Quận Thanh Xuân — nhanh chóng, chính xác và minh bạch.
+    </p>
+    <div class="apm-meta">
+      <span class="apm-chip">🗓️ Lịch theo ngày</span>
+      <span class="apm-chip">✅ Xác nhận nhanh</span>
+      <span class="apm-chip">📊 Thống kê trực quan</span>
+    </div>
+    <div class="apm-dots">
+      <span class="dot active"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="apm-section">
+  <div class="container apm-container">
+    <div class="apm-card">
+      <div class="apm-card-head">
+        <div>
+          <h2 class="apm-h2">Danh sách lịch khám</h2>
+          <p class="apm-sub">Quản lý toàn bộ lịch hẹn của bệnh nhân trên hệ thống.</p>
+        </div>
+      </div>
+      <div id="content" class="apm-content"></div>
+    </div>
+  </div>
+</section>
+
+<script>renderFooter();</script>
+</body>
+</html>

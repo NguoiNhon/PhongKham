@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TYT Quận Thanh Xuân — Trang chủ</title>
+<meta name="description" content="Đặt lịch khám và chăm sóc sức khoẻ tại Trung tâm Y tế Quận Thanh Xuân."/>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<script src="js/app.js"></script>
+<script>renderHeader("index.html");</script>
+
+<!-- ============ HERO SLIDER ============ -->
+<section class="home-hero">
+  <div class="home-hero-slides">
+    <img src="images/hero-hospital.jpg" class="active" alt=""/>
+    <img src="images/slide-1.jpg" alt=""/>
+    <img src="images/slide-2.jpg" alt=""/>
+    <img src="images/slide-3.jpg" alt=""/>
+  </div>
+  <div class="home-hero-overlay"></div>
+  <div class="home-hero-inner container">
+    <span class="home-eyebrow">Trung tâm Y tế Quận Thanh Xuân</span>
+    <h1 id="heroTitle" class="home-title">Chăm sóc sức khoẻ toàn diện cho bạn và gia đình</h1>
+    <p id="heroDesc" class="home-lead">Đội ngũ bác sĩ giàu kinh nghiệm, trang thiết bị hiện đại, dịch vụ tận tâm.</p>
+    <div class="home-cta">
+      <a href="booking.html" class="btn btn-primary">Đặt lịch khám ngay →</a>
+      <a href="doctors.html" class="btn btn-outline-light">Xem đội ngũ bác sĩ</a>
+    </div>
+    <div class="home-hero-meta">
+      <span>📍 191 Khương Trung, Thanh Xuân</span>
+      <span>⏰ Hỗ trợ 24/7</span>
+      <span>🏥 11 Trạm Y tế phường</span>
+    </div>
+  </div>
+  <div class="home-hero-dots" id="dots"></div>
+</section>
+
+<!-- ============ FEATURE STATS ============ -->
+<section class="container home-stats">
+  <div class="home-feature">
+    <div class="home-feature-icon ic-1">🩺</div>
+    <h3>20+ Chuyên khoa</h3>
+    <p>Đa dạng dịch vụ y tế chất lượng cao</p>
+  </div>
+  <div class="home-feature">
+    <div class="home-feature-icon ic-2">🏆</div>
+    <h3>150+ Bác sĩ</h3>
+    <p>Chuyên gia đầu ngành cả nước</p>
+  </div>
+  <div class="home-feature">
+    <div class="home-feature-icon ic-3">📅</div>
+    <h3>Đặt lịch online</h3>
+    <p>Nhanh chóng, tiện lợi 24/7</p>
+  </div>
+  <div class="home-feature">
+    <div class="home-feature-icon ic-4">⏰</div>
+    <h3>Cấp cứu 24/7</h3>
+    <p>Sẵn sàng phục vụ kịp thời</p>
+  </div>
+</section>
+
+<!-- ============ DEPARTMENTS ============ -->
+<section class="container home-section">
+  <div class="home-section-head">
+    <span class="home-eyebrow-dark">Chuyên khoa</span>
+    <h2 class="home-h2">Chuyên khoa nổi bật</h2>
+    <p class="home-sub">Khám và điều trị toàn diện theo từng nhóm chuyên môn</p>
+  </div>
+  <div class="dept-grid" id="deptList"></div>
+</section>
+
+<!-- ============ DOCTORS ============ -->
+<section class="home-doctors-bg">
+  <div class="container home-section">
+    <div class="home-section-head">
+      <span class="home-eyebrow-dark">Đội ngũ</span>
+      <h2 class="home-h2">Bác sĩ tiêu biểu</h2>
+      <p class="home-sub">Tận tâm — Trách nhiệm — Chuyên nghiệp</p>
+    </div>
+    <div class="doc-grid" id="docList"></div>
+    <div class="text-center mt-4">
+      <a href="doctors.html" class="btn btn-outline">Xem tất cả bác sĩ →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA STRIP ============ -->
+<section class="home-cta-strip">
+  <div class="container home-cta-inner">
+    <div>
+      <h2>Bạn cần đặt lịch khám?</h2>
+      <p>Đăng ký online chỉ trong 2 phút — chúng tôi sẽ liên hệ xác nhận ngay.</p>
+    </div>
+    <a href="booking.html" class="btn btn-white">Đặt lịch ngay →</a>
+  </div>
+</section>
+
+<script>renderFooter();</script>
+<script>
+const slidesData = [
+  ["Chăm sóc sức khoẻ toàn diện cho bạn và gia đình","Đội ngũ bác sĩ giàu kinh nghiệm, trang thiết bị hiện đại."],
+  ["Cơ sở vật chất hiện đại bậc nhất","Không gian xanh, sạch, thân thiện với người bệnh."],
+  ["Đội ngũ y bác sĩ tận tâm","150+ chuyên gia hàng đầu sẵn sàng phục vụ 24/7."],
+  ["Trang thiết bị y tế tiên tiến","Công nghệ chẩn đoán và điều trị nhập khẩu chính hãng."],
+];
+const heroImgs = $$(".home-hero-slides img");
+const dots = $("#dots");
+slidesData.forEach((_,i)=>{ const b=document.createElement("button"); if(i===0)b.classList.add("active"); b.onclick=()=>setSlide(i); dots.appendChild(b); });
+let cur = 0;
+function setSlide(i){ cur=i; heroImgs.forEach((im,k)=>im.classList.toggle("active",k===i));
+  $$(".home-hero-dots button").forEach((b,k)=>b.classList.toggle("active",k===i));
+  $("#heroTitle").textContent = slidesData[i][0]; $("#heroDesc").textContent = slidesData[i][1]; }
+setInterval(()=>setSlide((cur+1)%slidesData.length), 4000);
+
+$("#deptList").innerHTML = departments.map((d,i) => `
+  <article class="dept-card">
+    <div class="dept-num">${String(i+1).padStart(2,"0")}</div>
+    <h3>${esc(d.name)}</h3>
+    <p>${esc(d.desc)}</p>
+    <a href="booking.html" class="dept-link">Đặt lịch →</a>
+  </article>`).join("");
+
+$("#docList").innerHTML = doctors.slice(0,3).map(d => `
+  <article class="doc-card">
+    <div class="doc-avatar"><img src="${d.avatar}" alt=""/></div>
+    <h3>${esc(d.name)}</h3>
+    <p class="doc-spec">${esc(d.specialty)}</p>
+    <p class="doc-exp">${esc(d.exp)}</p>
+    <a href="booking.html" class="doc-link">Đặt lịch khám →</a>
+  </article>`).join("");
+</script>
+</body>
+</html>

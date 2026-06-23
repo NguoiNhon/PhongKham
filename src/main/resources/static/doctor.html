@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Khu vực bác sĩ — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/doctor.css"/>
+</head>
+<body>
+
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+
+<script>renderHeader();</script>
+
+<!-- HERO -->
+<section class="dr-hero">
+  <div class="dr-hero-grid"></div>
+  <div class="container dr-hero-inner">
+    <span class="dr-eyebrow">🩺 Khu vực bác sĩ</span>
+    <h1 class="dr-title">Khu vực bác sĩ<br/><span>TYT Quận Thanh Xuân</span></h1>
+    <p class="dr-lead">
+      Quản lý lịch khám, theo dõi bệnh nhân và cập nhật trạng thái khám bệnh
+      nhanh chóng, chính xác trên cùng một nền tảng.
+    </p>
+    <div class="dr-meta">
+      <span class="dr-chip">📅 Lịch khám hôm nay</span>
+      <span class="dr-chip">🧾 Hồ sơ bệnh nhân</span>
+      <span class="dr-chip">✅ Cập nhật trạng thái</span>
+    </div>
+    <div class="dr-dots">
+      <span class="dot active"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="dr-section">
+  <div class="container dr-container">
+    <div class="dr-card">
+      <div class="dr-card-head">
+        <div>
+          <h2 class="dr-h2">Bảng điều khiển bác sĩ</h2>
+          <p class="dr-sub">Quản lý lịch khám và cập nhật trạng thái khám bệnh.</p>
+        </div>
+      </div>
+      <div id="content" class="dr-content"></div>
+    </div>
+  </div>
+</section>
+
+<script>renderFooter();</script>
+
+<script src="js/doctor.api.js"></script>
+<script src="js/doctor.js"></script>
+</body>
+</html>

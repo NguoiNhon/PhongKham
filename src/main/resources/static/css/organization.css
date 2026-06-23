@@ -1,0 +1,177 @@
+/* ============================================================
+   organization.css — chỉ áp dụng cho trang Cơ cấu tổ chức
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.org-hero{position:relative;overflow:hidden;color:#fff;isolation:isolate}
+.org-hero-bg{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(1000px 500px at 85% -10%, rgba(255,255,255,.18), transparent 60%),
+    radial-gradient(800px 400px at 0% 110%, rgba(255,255,255,.12), transparent 60%),
+    linear-gradient(135deg,#0a6bb3 0%,#005baa 50%,#003a7a 100%);
+}
+.org-hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+}
+.org-hero-inner{padding:88px 16px 96px;max-width:1100px;text-align:center}
+.org-eyebrow{
+  display:inline-block;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(6px);
+  padding:6px 14px;border-radius:9999px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+}
+.org-title{
+  margin-top:18px;
+  font-size:clamp(28px,4vw,46px);
+  font-weight:800;line-height:1.15;letter-spacing:-.5px;
+  text-shadow:0 2px 14px rgba(0,0,0,.18);
+}
+.org-lead{
+  margin:18px auto 0;max-width:760px;
+  font-size:clamp(15px,1.4vw,18px);line-height:1.7;opacity:.95;
+}
+.org-hero-meta{margin-top:28px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.org-hero-meta span{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  padding:8px 14px;border-radius:9999px;font-size:13px;
+}
+
+/* ---------- SECTION ---------- */
+.org-section{padding:72px 16px;max-width:1200px}
+.org-section-head{text-align:center;margin-bottom:48px}
+.org-eyebrow-dark{
+  display:inline-block;
+  background:rgba(10,107,179,.1);color:var(--primary);
+  padding:5px 12px;border-radius:9999px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+}
+.org-h2{
+  margin-top:12px;
+  font-size:clamp(24px,2.6vw,32px);
+  font-weight:800;color:var(--text);letter-spacing:-.3px;
+}
+.org-sub{margin-top:8px;color:var(--muted);font-size:15px}
+
+/* ---------- CHART ---------- */
+.org-chart{display:flex;flex-direction:column;align-items:center}
+
+/* Top card */
+.org-top-card{
+  display:flex;align-items:center;gap:18px;
+  background:linear-gradient(135deg,#0a6bb3,#005baa);
+  color:#fff;border-radius:18px;
+  padding:22px 28px;
+  max-width:560px;width:100%;
+  box-shadow:0 18px 40px -16px rgba(10,107,179,.5);
+  position:relative;
+}
+.org-top-card::before{
+  content:"";position:absolute;inset:0;border-radius:18px;
+  background:
+    radial-gradient(300px 150px at 100% 0%, rgba(255,255,255,.18), transparent 60%);
+  pointer-events:none;
+}
+.org-top-icon{
+  width:56px;height:56px;border-radius:14px;flex-shrink:0;
+  background:rgba(255,255,255,.18);
+  display:grid;place-items:center;font-size:28px;
+  border:1px solid rgba(255,255,255,.25);
+}
+.org-top-content{position:relative}
+.org-top-label{
+  font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;opacity:.85;
+}
+.org-top-content h3{font-size:18px;font-weight:800;margin-top:2px}
+.org-top-content p{font-size:13.5px;opacity:.9;margin-top:4px;line-height:1.6}
+
+/* Connector line */
+.org-connector{
+  width:2px;height:40px;
+  background:linear-gradient(180deg,#0a6bb3,rgba(10,107,179,.2));
+}
+
+/* Branches */
+.org-branches{
+  width:100%;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  position:relative;
+}
+.org-branches::before{
+  content:"";position:absolute;
+  top:-20px;left:16.66%;right:16.66%;height:2px;
+  background:rgba(10,107,179,.3);
+}
+
+.org-branch{display:flex;flex-direction:column;gap:14px;position:relative}
+.org-branch::before{
+  content:"";position:absolute;top:-20px;left:50%;
+  width:2px;height:20px;background:rgba(10,107,179,.3);
+}
+
+.org-branch-head{
+  border-radius:16px;padding:22px 20px;color:#fff;text-align:center;
+  position:relative;overflow:hidden;
+  box-shadow:0 14px 32px -14px rgba(10,107,179,.35);
+}
+.org-branch-head.b1{background:linear-gradient(135deg,#0a6bb3,#0284c7)}
+.org-branch-head.b2{background:linear-gradient(135deg,#0891b2,#06b6d4)}
+.org-branch-head.b3{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
+.org-branch-icon{
+  width:52px;height:52px;border-radius:14px;
+  margin:0 auto 10px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.25);
+  display:grid;place-items:center;font-size:24px;
+}
+.org-branch-head h3{font-size:16px;font-weight:800;letter-spacing:-.2px}
+.org-branch-head p{font-size:13px;opacity:.92;margin-top:6px;line-height:1.6}
+.org-branch-count{
+  display:inline-block;margin-top:12px;
+  background:rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.3);
+  padding:4px 10px;border-radius:9999px;
+  font-size:11.5px;font-weight:600;
+}
+
+/* Leaves */
+.org-leaves{display:flex;flex-direction:column;gap:10px}
+.org-leaf{
+  display:flex;gap:12px;align-items:flex-start;
+  background:#fff;border:1px solid var(--border);
+  border-radius:12px;padding:14px 14px;
+  transition:.2s;
+}
+.org-leaf:hover{
+  transform:translateX(3px);
+  border-color:rgba(10,107,179,.4);
+  box-shadow:0 10px 24px -14px rgba(10,107,179,.3);
+}
+.org-leaf-num{
+  flex-shrink:0;
+  font-size:13px;font-weight:800;
+  background:linear-gradient(135deg,#0a6bb3,#005baa);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  width:26px;text-align:center;padding-top:1px;
+}
+.org-leaf-body h4{font-size:14px;font-weight:700;color:var(--text);line-height:1.4}
+.org-leaf-body p{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:3px}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .org-branches{grid-template-columns:1fr;gap:32px}
+  .org-branches::before{display:none}
+  .org-branch::before{display:none}
+}
+@media(max-width:480px){
+  .org-top-card{flex-direction:column;text-align:center;padding:20px}
+}

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dashboard lễ tân — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/receptionist.css"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+
+<script>renderHeader("receptionist.html");</script>
+
+<!-- HERO -->
+<section class="rc-hero">
+  <div class="rc-hero-grid"></div>
+  <div class="container rc-hero-inner">
+    <span class="rc-eyebrow">🛎️ Khu vực lễ tân</span>
+    <h1 class="rc-title">Dashboard lễ tân<br/><span>TYT Quận Thanh Xuân</span></h1>
+    <p class="rc-lead">
+      Theo dõi tình trạng lịch khám trong ngày, hỗ trợ check-in
+      bệnh nhân và phối hợp cùng đội ngũ y tế.
+    </p>
+    <div class="rc-meta">
+      <span class="rc-chip">📅 Lịch khám</span>
+      <span class="rc-chip">✅ Check-in</span>
+      <span class="rc-chip">📊 Thống kê nhanh</span>
+    </div>
+    <div class="rc-dots">
+      <span class="dot active"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="rc-section">
+  <div class="container rc-container">
+
+    <!-- KPI cards -->
+    <div class="rc-kpis">
+      <div class="rc-kpi rc-kpi--blue">
+        <div class="rc-kpi-icon">📋</div>
+        <div class="rc-kpi-body">
+          <span class="rc-kpi-label">Tổng lịch khám</span>
+          <h2 id="totalAppointments" class="rc-kpi-value">0</h2>
+          <span class="rc-kpi-trend">Cập nhật theo thời gian thực</span>
+        </div>
+      </div>
+      <div class="rc-kpi rc-kpi--amber">
+        <div class="rc-kpi-icon">⏳</div>
+        <div class="rc-kpi-body">
+          <span class="rc-kpi-label">Chờ khám</span>
+          <h2 id="pendingAppointments" class="rc-kpi-value">0</h2>
+          <span class="rc-kpi-trend">Đang trong hàng đợi</span>
+        </div>
+      </div>
+      <div class="rc-kpi rc-kpi--cyan">
+        <div class="rc-kpi-icon">✅</div>
+        <div class="rc-kpi-body">
+          <span class="rc-kpi-label">Đã check-in</span>
+          <h2 id="checkedInAppointments" class="rc-kpi-value">0</h2>
+          <span class="rc-kpi-trend">Sẵn sàng vào khám</span>
+        </div>
+      </div>
+      <div class="rc-kpi rc-kpi--green">
+        <div class="rc-kpi-icon">🏁</div>
+        <div class="rc-kpi-body">
+          <span class="rc-kpi-label">Hoàn thành</span>
+          <h2 id="completedAppointments" class="rc-kpi-value">0</h2>
+          <span class="rc-kpi-trend">Đã xử lý xong</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="rc-charts">
+      <div class="rc-card rc-card--chart">
+        <div class="rc-card-head">
+          <h2 class="rc-h2">Phân bố trạng thái lịch khám</h2>
+          <p class="rc-sub">Tỷ lệ các trạng thái trong ngày hôm nay.</p>
+        </div>
+        <div class="rc-chart-wrap rc-chart-wrap--donut">
+          <canvas id="statusDonut"></canvas>
+        </div>
+        <div class="rc-legend" id="statusLegend"></div>
+      </div>
+
+      <div class="rc-card rc-card--chart">
+        <div class="rc-card-head">
+          <h2 class="rc-h2">So sánh số lượng theo trạng thái</h2>
+          <p class="rc-sub">Trực quan hoá số lịch khám theo từng nhóm.</p>
+        </div>
+        <div class="rc-chart-wrap">
+          <canvas id="statusBar"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="js/receptionist.js"></script>
+
+<script>
+(function(){
+  const palette = {
+    pending:  '#f59e0b',
+    checked:  '#06b6d4',
+    done:     '#10b981',
+    other:    '#94a3b8'
+  };
+
+  const readNum = id => {
+    const el = document.getElementById(id);
+    const n = parseInt((el && el.textContent || '0').replace(/\D/g,''), 10);
+    return isNaN(n) ? 0 : n;
+  };
+
+  let donut, bar;
+
+  function buildLegend(values){
+    const labels = ['Chờ khám','Đã check-in','Hoàn thành','Khác'];
+    const colors = [palette.pending, palette.checked, palette.done, palette.other];
+    const total = values.reduce((a,b)=>a+b,0) || 1;
+    const el = document.getElementById('statusLegend');
+    if (!el) return;
+    el.innerHTML = labels.map((l,i)=>{
+      const pct = Math.round(values[i]/total*100);
+      return `<div class="rc-legend-item">
+        <span class="rc-legend-dot" style="background:${colors[i]}"></span>
+        <span class="rc-legend-label">${l}</span>
+        <span class="rc-legend-value">${values[i]} <em>(${pct}%)</em></span>
+      </div>`;
+    }).join('');
+  }
+
+  function render(){
+    if (typeof Chart === 'undefined') return;
+    const total = readNum('totalAppointments');
+    const pending = readNum('pendingAppointments');
+    const checked = readNum('checkedInAppointments');
+    const done = readNum('completedAppointments');
+    const other = Math.max(0, total - pending - checked - done);
+    const values = [pending, checked, done, other];
+    const showValues = values.some(v=>v>0) ? values : [1,1,1,1];
+
+    const labels = ['Chờ khám','Đã check-in','Hoàn thành','Khác'];
+    const colors = [palette.pending, palette.checked, palette.done, palette.other];
+
+    const donutCtx = document.getElementById('statusDonut');
+    const barCtx = document.getElementById('statusBar');
+    if (!donutCtx || !barCtx) return;
+
+    if (donut) donut.destroy();
+    donut = new Chart(donutCtx, {
+      type:'doughnut',
+      data:{ labels, datasets:[{ data:showValues, backgroundColor:colors, borderWidth:0, hoverOffset:8 }]},
+      options:{
+        responsive:true, maintainAspectRatio:false, cutout:'68%',
+        plugins:{ legend:{display:false}, tooltip:{ backgroundColor:'#0a2540', padding:10, cornerRadius:8 }}
+      }
+    });
+
+    if (bar) bar.destroy();
+    bar = new Chart(barCtx, {
+      type:'bar',
+      data:{
+        labels,
+        datasets:[{
+          data: values,
+          backgroundColor: colors,
+          borderRadius: 10,
+          maxBarThickness: 56
+        }]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{display:false}, tooltip:{ backgroundColor:'#0a2540', padding:10, cornerRadius:8 }},
+        scales:{
+          x:{ grid:{display:false}, ticks:{ color:'#5b6b80', font:{ size:12, weight:'500' }}},
+          y:{ beginAtZero:true, ticks:{ color:'#5b6b80', precision:0 }, grid:{ color:'#eef2f7' }}
+        }
+      }
+    });
+
+    buildLegend(values);
+  }
+
+  // initial + observe KPI updates from receptionist.js
+  const ids = ['totalAppointments','pendingAppointments','checkedInAppointments','completedAppointments'];
+  const observer = new MutationObserver(()=>render());
+  ids.forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) observer.observe(el, {childList:true, characterData:true, subtree:true});
+  });
+
+  document.addEventListener('DOMContentLoaded', render);
+  setTimeout(render, 300);
+  setTimeout(render, 1500);
+})();
+</script>
+
+<script>renderFooter();</script>
+</body>
+</html>

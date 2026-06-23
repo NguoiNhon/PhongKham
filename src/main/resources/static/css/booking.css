@@ -1,0 +1,177 @@
+/* ============================================================
+   booking.css — chỉ áp dụng cho trang Đặt lịch khám
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.bk-hero{position:relative;overflow:hidden;color:#fff;isolation:isolate}
+.bk-hero-bg{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(1000px 500px at 85% -10%, rgba(255,255,255,.18), transparent 60%),
+    radial-gradient(800px 400px at 0% 110%, rgba(255,255,255,.12), transparent 60%),
+    linear-gradient(135deg,#0a6bb3 0%,#005baa 50%,#003a7a 100%);
+}
+.bk-hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+}
+.bk-hero-inner{padding:72px 16px 88px;max-width:900px;text-align:center}
+.bk-eyebrow{
+  display:inline-block;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(6px);
+  padding:6px 14px;border-radius:9999px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+}
+.bk-title{
+  margin-top:18px;
+  font-size:clamp(26px,3.6vw,40px);
+  font-weight:800;line-height:1.15;letter-spacing:-.5px;
+  text-shadow:0 2px 14px rgba(0,0,0,.18);
+}
+.bk-lead{
+  margin:16px auto 0;max-width:640px;
+  font-size:clamp(14px,1.3vw,17px);line-height:1.7;opacity:.95;
+}
+.bk-hero-meta{margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.bk-hero-meta span{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  padding:8px 14px;border-radius:9999px;font-size:13px;
+}
+
+/* ---------- SECTION ---------- */
+.bk-section{padding:0 16px 72px;max-width:820px}
+
+/* ---------- BOOKING CARD ---------- */
+.bk-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:18px;padding:32px;
+  box-shadow:0 18px 40px -20px rgba(10,107,179,.3);
+  margin-top:-44px;position:relative;z-index:5;
+}
+.bk-card-head{margin-bottom:24px;text-align:center}
+.bk-h2{font-size:clamp(20px,2.2vw,26px);font-weight:800;color:var(--text);letter-spacing:-.3px}
+.bk-sub{margin-top:6px;color:var(--muted);font-size:14.5px}
+
+/* ---------- STEPS ---------- */
+.steps{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  list-style:none;padding:0;margin:0 0 28px;
+  position:relative;gap:8px;
+}
+.steps::before{
+  content:"";position:absolute;
+  top:18px;left:8%;right:8%;height:2px;
+  background:var(--border);z-index:0;
+}
+.steps li{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:13px;color:var(--muted);font-weight:500;
+  position:relative;z-index:1;text-align:center;
+}
+.steps li::before{
+  content:attr(data-step);
+  width:36px;height:36px;border-radius:9999px;
+  background:#fff;border:2px solid var(--border);
+  display:grid;place-items:center;
+  font-weight:700;color:var(--muted);
+  transition:.25s;
+}
+.steps li.active{color:var(--primary);font-weight:600}
+.steps li.active::before{
+  background:linear-gradient(135deg,#0a6bb3,#005baa);
+  border-color:#0a6bb3;color:#fff;
+  box-shadow:0 6px 18px -6px rgba(10,107,179,.5);
+}
+.steps li.done{color:var(--text)}
+.steps li.done::before{
+  background:#10b981;border-color:#10b981;color:#fff;
+  content:"✓";
+}
+
+/* ---------- PANEL ---------- */
+.panel{
+  background:#fafbfc;border:1px solid var(--border);
+  border-radius:14px;padding:24px;
+  min-height:200px;
+}
+.panel input,
+.panel select,
+.panel textarea{
+  width:100%;padding:11px 14px;
+  border:1px solid var(--border);border-radius:10px;
+  background:#fff;font-size:14.5px;
+  transition:.2s;
+}
+.panel input:focus,
+.panel select:focus,
+.panel textarea:focus{
+  outline:none;border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(10,107,179,.15);
+}
+.panel label{font-size:13px;font-weight:600;color:var(--text);display:block;margin-bottom:6px}
+
+/* ---------- ACTIONS ---------- */
+.bk-actions{margin-top:24px}
+.bk-actions .btn{padding:11px 22px;border-radius:10px;font-weight:600}
+
+/* ---------- TRUST STRIP ---------- */
+.bk-trust{
+  margin-top:28px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+}
+.bk-trust-item{
+  background:#fff;border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;
+  display:flex;gap:12px;align-items:center;
+  transition:.2s;
+}
+.bk-trust-item:hover{
+  border-color:rgba(10,107,179,.3);
+  box-shadow:0 10px 24px -14px rgba(10,107,179,.25);
+}
+.bk-trust-item span{
+  font-size:24px;
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(10,107,179,.12),rgba(10,107,179,.04));
+  display:grid;place-items:center;flex-shrink:0;
+}
+.bk-trust-item b{font-size:14px;color:var(--text);display:block}
+.bk-trust-item p{font-size:12.5px;color:var(--muted);margin-top:2px}
+@media(max-width:700px){.bk-trust{grid-template-columns:1fr}}
+
+/* ---------- PAYMENT LOADING ---------- */
+.payment-loading{
+  position:fixed;inset:0;z-index:80;
+  background:rgba(15,30,55,.6);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:16px;
+}
+.payment-loading.hidden{display:none}
+.payment-loading-box{
+  background:#fff;border-radius:18px;padding:36px 32px;
+  text-align:center;max-width:420px;width:100%;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.4);
+  animation:bk-modal-in .25s ease;
+}
+@keyframes bk-modal-in{
+  from{opacity:0;transform:translateY(10px) scale(.97)}
+  to{opacity:1;transform:none}
+}
+.spinner{
+  width:56px;height:56px;border-radius:9999px;
+  border:4px solid rgba(10,107,179,.15);
+  border-top-color:var(--primary);
+  margin:0 auto 18px;
+  animation:bk-spin 1s linear infinite;
+}
+@keyframes bk-spin{to{transform:rotate(360deg)}}
+.payment-loading-box h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px}
+.payment-loading-box p{font-size:14px;color:var(--muted);line-height:1.6}

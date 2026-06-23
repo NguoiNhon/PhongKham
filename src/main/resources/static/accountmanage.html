@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Quản lý tài khoản — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/accountmanage.css"/>
+</head>
+<body>
+
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/accountmanage.api.js"></script>
+<script src="js/accountmanage.js"></script>
+
+<script>renderHeader();</script>
+
+<!-- HERO -->
+<section class="am-hero">
+  <div class="am-hero-grid"></div>
+  <div class="container am-hero-inner">
+    <span class="am-eyebrow">⚙️ Quản trị hệ thống</span>
+    <h1 class="am-title">Quản lý tài khoản<br/><span>người dùng hệ thống</span></h1>
+    <p class="am-lead">
+      Theo dõi, phân quyền và kiểm soát toàn bộ tài khoản của Trung tâm Y tế
+      Quận Thanh Xuân — minh bạch, an toàn và bảo mật.
+    </p>
+    <div class="am-meta">
+      <span class="am-chip">👥 Tài khoản hệ thống</span>
+      <span class="am-chip">🔒 Phân quyền vai trò</span>
+      <span class="am-chip">🛡️ Bảo mật cao</span>
+    </div>
+    <div class="am-dots">
+      <span class="dot active"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="am-section">
+  <div class="container am-container">
+    <div class="am-card">
+      <div class="am-card-head">
+        <div>
+          <h2 class="am-h2">Danh sách tài khoản</h2>
+          <p class="am-sub">Quản lý toàn bộ tài khoản đăng nhập trên hệ thống.</p>
+        </div>
+      </div>
+      <div id="content" class="am-content"></div>
+    </div>
+  </div>
+</section>
+
+<script>renderFooter();</script>
+</body>
+</html>

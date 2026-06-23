@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Quản lý bác sĩ — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/doctormanage.css"/>
+</head>
+<body>
+
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+
+<script>renderHeader();</script>
+
+<!-- HERO -->
+<section class="dm-hero">
+  <div class="dm-hero-grid"></div>
+  <div class="container dm-hero-inner">
+    <span class="dm-eyebrow">👨‍⚕️ Quản trị hệ thống</span>
+    <h1 class="dm-title">Quản lý bác sĩ<br/><span>TYT Quận Thanh Xuân</span></h1>
+    <p class="dm-lead">
+      Thêm mới, cập nhật và phân công bác sĩ theo từng chuyên khoa
+      một cách nhanh chóng và chính xác.
+    </p>
+    <div class="dm-meta">
+      <span class="dm-chip">🩺 Danh sách bác sĩ</span>
+      <span class="dm-chip">🏥 Phân công khoa</span>
+      <span class="dm-chip">🩺 Hồ sơ bác sĩ</span>
+    </div>
+    <div class="dm-dots">
+      <span class="dot active"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="dm-section">
+  <div class="container dm-container">
+    <div class="dm-card">
+      <div class="dm-card-head">
+        <div>
+          <h2 class="dm-h2">Danh sách bác sĩ</h2>
+          <p class="dm-sub">Quản lý hồ sơ bác sĩ trong hệ thống.</p>        
+        </div>
+        <button class="dm-btn" onclick="openCreateDoctorModal()">+ Thêm bác sĩ</button>
+      </div>
+      <div id="content" class="dm-content"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="doctorModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <h2 id="modalTitle">Thêm bác sĩ</h2>
+    <div class="grid grid-2 mt-4">
+      <input id="fullName" placeholder="Họ tên"/>
+      <input
+        id="dateOfBirth"
+        type="date"
+      />
+      <input type="file" id="imageFile" />
+      <input id="phone" placeholder="Số điện thoại"/>
+      <select id="gender">
+        <option value="">Chọn giới tính</option>
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+      </select>
+      <input
+        id="experienceYears"
+        type="number"
+        min="0"
+        placeholder="Số năm kinh nghiệm"
+      />
+      <select id="departmentId"></select>
+    </div>
+    <div class="mt-4">
+      <button class="btn btn-primary" onclick="handleSaveDoctor()">Lưu</button>
+      <button class="btn" onclick="closeDoctorModal()">Hủy</button>
+    </div>
+  </div>
+</div>
+
+<script>renderFooter();</script>
+
+<script src="js/doctormanage.api.js"></script>
+<script src="js/doctormanage.js"></script>
+</body>
+</html>

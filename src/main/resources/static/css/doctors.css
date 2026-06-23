@@ -1,0 +1,199 @@
+/* ============================================================
+   doctors.css — chỉ áp dụng cho trang Đội ngũ bác sĩ
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+.doc-hero{position:relative;overflow:hidden;color:#fff;isolation:isolate}
+.doc-hero-bg{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(1000px 500px at 85% -10%, rgba(255,255,255,.18), transparent 60%),
+    radial-gradient(800px 400px at 0% 110%, rgba(255,255,255,.12), transparent 60%),
+    linear-gradient(135deg,#0a6bb3 0%,#005baa 50%,#003a7a 100%);
+}
+.doc-hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+}
+.doc-hero-inner{padding:80px 16px 88px;max-width:1100px;text-align:center}
+.doc-eyebrow{
+  display:inline-block;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(6px);
+  padding:6px 14px;border-radius:9999px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+}
+.doc-title{
+  margin-top:18px;
+  font-size:clamp(28px,4vw,46px);
+  font-weight:800;line-height:1.15;letter-spacing:-.5px;
+  text-shadow:0 2px 14px rgba(0,0,0,.18);
+}
+.doc-lead{
+  margin:18px auto 0;max-width:760px;
+  font-size:clamp(15px,1.4vw,18px);line-height:1.7;opacity:.95;
+}
+.doc-hero-meta{margin-top:28px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.doc-hero-meta span{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  padding:8px 14px;border-radius:9999px;font-size:13px;
+}
+
+/* ---------- SECTION ---------- */
+.doc-section{padding:56px 16px 80px;max-width:1200px}
+.doc-h2{font-size:clamp(20px,2.2vw,26px);font-weight:800;color:var(--text);letter-spacing:-.3px}
+.doc-sub{margin-top:4px;color:var(--muted);font-size:14px}
+.mt-6{margin-top:32px}
+
+/* ---------- FILTER CARD ---------- */
+.doc-filter-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:18px;padding:26px;
+  box-shadow:0 14px 36px -18px rgba(10,107,179,.25);
+  margin-top:-44px;position:relative;z-index:5;
+}
+.doc-filter-head{margin-bottom:18px}
+.doc-filter-row{
+  display:grid;grid-template-columns:2fr 1fr;gap:14px;
+}
+.doc-input-wrap{position:relative}
+.doc-input-icon{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  font-size:16px;opacity:.6;pointer-events:none;
+}
+.doc-input-wrap input,
+.doc-input-wrap select{
+  width:100%;
+  padding:12px 14px 12px 40px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fafbfc;
+  font-size:14.5px;color:var(--text);
+  transition:.2s;
+  appearance:none;
+}
+.doc-input-wrap select{
+  background:#fafbfc url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230a6bb3' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") no-repeat right 14px center;
+  padding-right:36px;cursor:pointer;
+}
+.doc-input-wrap input:focus,
+.doc-input-wrap select:focus{
+  outline:none;background:#fff;
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(10,107,179,.15);
+}
+@media(max-width:700px){.doc-filter-row{grid-template-columns:1fr}}
+
+/* ---------- DOCTOR GRID ---------- */
+.doc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+@media(max-width:900px){.doc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.doc-grid{grid-template-columns:1fr}}
+
+/* ---------- DOCTOR CARD (tự áp cho card render từ JS) ---------- */
+.doc-grid > .card,
+.doc-grid > div{
+  background:#fff;border:1px solid var(--border);
+  border-radius:16px;padding:24px 20px;text-align:center;
+  transition:.25s;position:relative;overflow:hidden;
+}
+.doc-grid > .card::before,
+.doc-grid > div::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:3px;
+  background:linear-gradient(90deg,#0a6bb3,#38bdf8);
+  transform:scaleX(0);transform-origin:left;transition:.3s;
+}
+.doc-grid > .card:hover,
+.doc-grid > div:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px -16px rgba(10,107,179,.28);
+  border-color:rgba(10,107,179,.3);
+}
+.doc-grid > .card:hover::before,
+.doc-grid > div:hover::before{transform:scaleX(1)}
+
+/* avatar đoán theo render hiện tại */
+.doc-grid img{
+  width:104px !important;height:104px !important;
+  border-radius:9999px;object-fit:cover;
+  margin:0 auto 14px;display:block;
+  border:3px solid #fff;
+  box-shadow:0 8px 22px -8px rgba(10,107,179,.4);
+  background:linear-gradient(135deg,#0a6bb3,#005baa);
+}
+.doc-grid h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px}
+.doc-grid p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:2px}
+.doc-grid .text-primary,
+.doc-grid b{color:var(--primary);font-weight:600}
+.doc-grid button,
+.doc-grid .btn{
+  margin-top:14px;
+  background:linear-gradient(135deg,#0a6bb3,#005baa);
+  color:#fff !important;border:none;
+  padding:9px 18px;border-radius:9px;
+  font-size:13.5px;font-weight:600;cursor:pointer;
+  transition:.2s;text-decoration:none;display:inline-block;
+}
+.doc-grid button:hover,
+.doc-grid .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(10,107,179,.5)}
+
+/* ---------- MODAL ---------- */
+.modal-overlay{
+  position:fixed;inset:0;z-index:50;
+  background:rgba(15,30,55,.55);
+  backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;
+  padding:16px;
+}
+.modal-overlay.active{display:flex}
+.modal{
+  background:#fff;border-radius:18px;
+  width:100%;max-width:560px;max-height:90vh;overflow:auto;
+  padding:28px;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.4);
+  animation:doc-modal-in .25s ease;
+}
+@keyframes doc-modal-in{
+  from{opacity:0;transform:translateY(12px) scale(.98)}
+  to{opacity:1;transform:none}
+}
+.doctor-image-wrap{
+    width:100%;
+    height:240px;
+    overflow:hidden;
+    border-radius:18px;
+    margin-bottom:16px;
+}
+
+.doctor-image{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.doctor-department{
+    margin-top:8px;
+    font-weight:600;
+}
+
+.doctor-exp{
+    margin-top:6px;
+    color:#666;
+}
+
+.doctor-modal-image{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    margin:0 auto 20px;
+}

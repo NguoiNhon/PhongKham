@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cơ cấu tổ chức — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/organization.css"/>
+</head>
+<body>
+<script src="js/app.js"></script>
+<script>renderHeader("organization.html");</script>
+
+<!-- ============ HERO ============ -->
+<section class="org-hero">
+  <div class="org-hero-bg"></div>
+  <div class="org-hero-inner container">
+    <span class="org-eyebrow">Bộ máy tổ chức</span>
+    <h1 class="org-title">Cơ cấu tổ chức Trung tâm</h1>
+    <p class="org-lead">
+      Hệ thống tổ chức gọn nhẹ, vận hành chuyên nghiệp với <b>3 khối chức năng</b>
+      — Hành chính, Chuyên môn và mạng lưới <b>11 Trạm Y tế phường</b> trực thuộc.
+    </p>
+    <div class="org-hero-meta">
+      <span>🏛️ 1 Ban Giám đốc</span>
+      <span>📋 4 Phòng chức năng</span>
+      <span>🩺 6 Khoa chuyên môn</span>
+      <span>🏥 11 Trạm Y tế phường</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORG CHART ============ -->
+<section class="container org-section">
+  <div class="org-section-head">
+    <span class="org-eyebrow-dark">Sơ đồ tổ chức</span>
+    <h2 class="org-h2">Mô hình quản lý theo 3 khối</h2>
+    <p class="org-sub">Di chuột vào từng đơn vị để xem mô tả chi tiết</p>
+  </div>
+
+  <!-- Top: Ban Giám đốc -->
+  <div class="org-chart">
+    <div class="org-top-card">
+      <div class="org-top-icon">👤</div>
+      <div class="org-top-content">
+        <div class="org-top-label">Lãnh đạo</div>
+        <h3>Ban Giám đốc TTYT Quận Thanh Xuân</h3>
+        <p>Giám đốc và các Phó Giám đốc lãnh đạo, điều hành toàn bộ hoạt động của Trung tâm.</p>
+      </div>
+    </div>
+
+    <div class="org-connector"></div>
+
+    <!-- Branches -->
+    <div class="org-branches" id="branches"></div>
+  </div>
+</section>
+
+<script>renderFooter();</script>
+<script>
+const tree = [
+  { name:"Khối Hành chính – Quản lý",
+    desc:"Quản lý vận hành, nhân sự, tài chính, kế hoạch.",
+    icon:"📋", color:"b1",
+    children:[
+      ["Phòng Tổ chức – Hành chính","Quản lý nhân sự, văn thư, hành chính."],
+      ["Phòng Kế hoạch – Nghiệp vụ","Lập kế hoạch, chỉ đạo chuyên môn."],
+      ["Phòng Tài chính – Kế toán","Quản lý tài chính, viện phí, BHYT."],
+      ["Phòng Điều dưỡng","Giám sát chăm sóc người bệnh."],
+    ]},
+  { name:"Khối Chuyên môn",
+    desc:"Khám chữa bệnh và y tế dự phòng.",
+    icon:"🩺", color:"b2",
+    children:[
+      ["Khoa Khám bệnh – Đa khoa","Khám điều trị ngoại trú đa khoa."],
+      ["Khoa Y tế Công cộng & Dinh dưỡng","Truyền thông, ATTP, dinh dưỡng."],
+      ["Khoa Kiểm soát bệnh tật & HIV/AIDS","Phòng chống dịch, tiêm chủng."],
+      ["Khoa Chăm sóc SKSS","SKSS, bà mẹ – trẻ em, KHHGĐ."],
+      ["Khoa Dược – CLS","Dược, xét nghiệm, CĐHA."],
+      ["Khoa YHCT – PHCN","Y học cổ truyền, phục hồi chức năng."],
+    ]},
+  { name:"Khối Trạm Y tế phường",
+    desc:"11 Trạm Y tế phường trực thuộc.",
+    icon:"🏥", color:"b3",
+    children:[
+      ["TYT Khương Trung – Khương Mai","Phục vụ Khương Trung, Khương Mai."],
+      ["TYT Khương Đình – Hạ Đình","Phục vụ Khương Đình, Hạ Đình."],
+      ["TYT Thanh Xuân Bắc – Nam","Phục vụ TXB, TXN, TX Trung."],
+      ["TYT Nhân Chính – Thượng Đình","Phục vụ Nhân Chính, Thượng Đình."],
+      ["TYT Kim Giang – Phương Liệt","Phục vụ Kim Giang, Phương Liệt."],
+    ]},
+];
+
+$("#branches").innerHTML = tree.map(b => `
+  <div class="org-branch">
+    <div class="org-branch-head ${b.color}">
+      <div class="org-branch-icon">${b.icon}</div>
+      <h3>${esc(b.name)}</h3>
+      <p>${esc(b.desc)}</p>
+      <span class="org-branch-count">${b.children.length} đơn vị</span>
+    </div>
+    <div class="org-leaves">
+      ${b.children.map(([n,d],i) => `
+        <div class="org-leaf">
+          <div class="org-leaf-num">${String(i+1).padStart(2,"0")}</div>
+          <div class="org-leaf-body">
+            <h4>${esc(n)}</h4>
+            <p>${esc(d)}</p>
+          </div>
+        </div>`).join("")}
+    </div>
+  </div>`).join("");
+</script>
+</body>
+</html>

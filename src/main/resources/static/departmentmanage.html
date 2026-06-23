@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Quản lý khoa — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/departmentmanage.css"/>
+</head>
+<body>
+
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+
+<script>renderHeader();</script>
+
+<!-- HERO -->
+<section class="depm-hero">
+  <div class="depm-hero-grid"></div>
+  <div class="container depm-hero-inner">
+    <span class="depm-eyebrow">🏥 Quản trị hệ thống</span>
+    <h1 class="depm-title">Quản lý khoa<br/><span>TYT Quận Thanh Xuân</span></h1>
+    <p class="depm-lead">
+      Cấu hình các khoa khám, khung giờ làm việc và năng lực phục vụ
+      bệnh nhân trong ngày một cách linh hoạt.
+    </p>
+    <div class="depm-meta">
+      <span class="depm-chip">🏷️ Danh sách khoa</span>
+      <span class="depm-chip">🕒 Giờ làm việc</span>
+      <span class="depm-chip">👥 Sức chứa bệnh nhân</span>
+    </div>
+    <div class="depm-dots">
+      <span class="dot active"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="depm-section">
+  <div class="container depm-container">
+    <div class="depm-card">
+      <div class="depm-card-head">
+        <div>
+          <h2 class="depm-h2">Danh sách khoa</h2>
+          <p class="depm-sub">Quản lý chuyên khoa và cấu hình lịch khám.</p>
+        </div>
+        <button class="depm-btn" onclick="openCreateDepartmentModal()">+ Thêm khoa</button>
+      </div>
+      <div id="content" class="depm-content"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="departmentModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <h2 id="modalTitle">Thêm khoa</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Tên khoa</label>
+        <input type="text" id="departmentName">
+      </div>
+      <div class="form-group">
+        <label>Mô tả</label>
+        <textarea id="departmentDescription"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Mỗi ca khám (phút)</label>
+        <input type="number" id="slotDuration" value="30">
+      </div>
+      <div class="form-group">
+        <label>Giờ bắt đầu làm</label>
+        <input type="time" id="workingStart" value="08:00">
+      </div>
+      <div class="form-group">
+        <label>Giờ kết thúc</label>
+        <input type="time" id="workingEnd" value="17:00">
+      </div>
+      <div class="form-group">
+        <label>Nghỉ trưa bắt đầu</label>
+        <input type="time" id="lunchStart" value="12:00">
+      </div>
+      <div class="form-group">
+        <label>Nghỉ trưa kết thúc</label>
+        <input type="time" id="lunchEnd" value="13:00">
+      </div>
+      <div class="form-group">
+        <label>Số bệnh nhân tối đa/ngày</label>
+        <input type="number" id="maxPatientsPerDay" value="20">
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:20px">
+      <button
+          id="saveDepartmentBtn"
+          class="btn btn-primary"
+          onclick="handleCreateDepartment()"
+      >
+          Tạo khoa
+      </button>
+      <button class="btn" onclick="closeDepartmentModal()">Hủy</button>
+    </div>
+  </div>
+</div>
+
+<script>renderFooter();</script>
+
+<script src="js/departmentmanage.api.js"></script>
+<script src="js/departmentmanage.js"></script>
+</body>
+</html>

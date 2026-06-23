@@ -1,0 +1,110 @@
+/* ===== Patients Page ===== */
+.pt-hero{
+  position:relative;
+  background:linear-gradient(135deg,#0a6bb3 0%,#005baa 50%,#003a7a 100%);
+  color:#fff;
+  padding:clamp(56px,9vw,110px) 0 clamp(64px,10vw,120px);
+  overflow:hidden;
+}
+.pt-hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.12) 0,transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(255,255,255,.08) 0,transparent 45%),
+    linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:auto,auto,40px 40px,40px 40px;
+  pointer-events:none;
+}
+.pt-hero-inner{position:relative;max-width:1100px;text-align:center}
+.pt-eyebrow{
+  display:inline-block;padding:8px 16px;border-radius:999px;
+  background:rgba(255,255,255,.15);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.25);
+  font-size:13px;font-weight:600;letter-spacing:.5px;margin-bottom:20px;
+}
+.pt-title{
+  font-size:clamp(32px,5vw,56px);
+  font-weight:800;line-height:1.15;margin:0 0 18px;
+}
+.pt-title span{
+  background:linear-gradient(90deg,#fff,#cfe7ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.pt-lead{
+  font-size:clamp(15px,1.6vw,18px);
+  max-width:720px;margin:0 auto 26px;
+  color:rgba(255,255,255,.9);line-height:1.65;
+}
+.pt-meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:26px}
+.pt-chip{
+  padding:8px 16px;border-radius:999px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  font-size:13px;font-weight:500;
+}
+.pt-dots{display:flex;gap:8px;justify-content:center}
+.pt-dots .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35)}
+.pt-dots .dot.active{background:#fff;width:24px;border-radius:4px}
+
+.pt-section{background:#f6f9fc;padding:clamp(40px,6vw,72px) 0;margin-top:-40px;position:relative;z-index:2}
+.pt-container{max-width:1100px}
+
+.pt-card{
+  position:relative;background:#fff;border-radius:20px;
+  padding:clamp(20px,3vw,36px);
+  box-shadow:0 20px 60px rgba(0,60,120,.12);overflow:hidden;
+}
+.pt-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,#0a6bb3,#005baa,#00a7e1);
+}
+.pt-card-head{padding-bottom:18px;margin-bottom:20px;border-bottom:1px solid #eef2f6}
+.pt-h2{font-size:clamp(20px,2.4vw,26px);font-weight:700;color:#003a7a;margin:0 0 4px}
+.pt-sub{margin:0;color:#5a6b7d;font-size:14px}
+
+/* Tabs */
+.pt-tabs{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin-bottom:20px;padding:6px;background:#f0f7ff;
+  border-radius:12px;width:fit-content;
+}
+.pt-tabs button{
+  padding:10px 18px;border:none;background:transparent;cursor:pointer;
+  font-size:14px;font-weight:600;color:#5a6b7d;
+  border-radius:8px;transition:all .2s;
+}
+.pt-tabs button.active{
+  background:linear-gradient(90deg,#0a6bb3,#005baa);
+  color:#fff;box-shadow:0 4px 12px rgba(10,107,179,.25);
+}
+
+/* Content */
+.pt-content table,
+.pt-invoice table{
+  width:100%;border-collapse:collapse;background:#fff;
+  border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,60,120,.04);
+}
+.pt-content th,.pt-content td,
+.pt-invoice th,.pt-invoice td{
+  padding:12px 14px;text-align:left;
+  border-bottom:1px solid #eef2f6;font-size:14px;
+}
+.pt-content th,.pt-invoice th{
+  background:linear-gradient(90deg,#f0f7ff,#e6f1fb);
+  color:#003a7a;font-weight:600;
+  text-transform:uppercase;font-size:12px;letter-spacing:.5px;
+}
+.pt-content tr:hover td,.pt-invoice tr:hover td{background:#f9fcff}
+.pt-content button,.pt-invoice button{
+  padding:6px 12px;border-radius:8px;border:none;cursor:pointer;
+  font-size:13px;font-weight:600;transition:all .2s;margin-right:6px;
+}
+.pt-content button:hover,.pt-invoice button:hover{
+  transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,60,120,.15);
+}
+
+@media (max-width:600px){
+  .pt-content table,.pt-invoice table{font-size:13px}
+  .pt-content th,.pt-content td,.pt-invoice th,.pt-invoice td{padding:10px 8px}
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Đội ngũ bác sĩ — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/doctors.css"/>
+</head>
+<body>
+<script src="js/app.js"></script>
+<script src="js/doctors.api.js"></script>
+<script src="js/doctors.js"></script>
+<script>renderHeader("doctors.html");</script>
+
+<!-- ============ HERO ============ -->
+<section class="doc-hero">
+  <div class="doc-hero-bg"></div>
+  <div class="doc-hero-inner container">
+    <span class="doc-eyebrow">Đội ngũ y bác sĩ</span>
+    <h1 class="doc-title">Bác sĩ tận tâm — Chuyên môn vững vàng</h1>
+    <p class="doc-lead">
+      Gặp gỡ đội ngũ bác sĩ và chuyên gia y tế của Trung tâm Y tế Quận Thanh Xuân —
+      luôn sẵn sàng đồng hành cùng sức khỏe của bạn và gia đình.
+    </p>
+    <div class="doc-hero-meta">
+      <span>👨‍⚕️ 150+ Bác sĩ &amp; chuyên gia</span>
+      <span>🩺 20+ Chuyên khoa</span>
+      <span>🏆 Đầu ngành cả nước</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FILTER + LIST ============ -->
+<section class="container doc-section">
+  <div class="doc-filter-card">
+    <div class="doc-filter-head">
+      <div>
+        <h2 class="doc-h2">Tìm bác sĩ phù hợp</h2>
+        <p class="doc-sub">Lọc theo tên hoặc chuyên khoa để đặt lịch khám</p>
+      </div>
+    </div>
+    <div class="doc-filter-row">
+      <div class="doc-input-wrap">
+        <span class="doc-input-icon">🔍</span>
+        <input id="q" placeholder="Tìm bác sĩ theo tên..."/>
+      </div>
+      <div class="doc-input-wrap">
+        <span class="doc-input-icon">🩺</span>
+        <select id="dept"></select>
+      </div>
+    </div>
+  </div>
+
+  <div id="list" class="doc-grid mt-6"></div>
+</section>
+
+<div id="modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div id="modalBody" class="modal"></div>
+</div>
+
+<script>renderFooter();</script>
+</body>
+</html>

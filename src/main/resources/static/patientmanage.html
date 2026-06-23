@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Quản lý bệnh nhân — TYT Quận Thanh Xuân</title>
+<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/patientmanage.css"/>
+</head>
+<body>
+
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+
+<script>renderHeader("patientmanage.html");</script>
+
+<!-- HERO -->
+<section class="pm-hero">
+  <div class="pm-hero-grid"></div>
+  <div class="container pm-hero-inner">
+    <span class="pm-eyebrow">🧑‍⚕️ Quản trị hệ thống</span>
+    <h1 class="pm-title">Quản lý bệnh nhân<br/><span>TYT Quận Thanh Xuân</span></h1>
+    <p class="pm-lead">
+      Theo dõi danh sách bệnh nhân, cập nhật hồ sơ và quản lý
+      tài khoản truy cập dịch vụ y tế của trạm.
+    </p>
+    <div class="pm-meta">
+      <span class="pm-chip">🗂️ Hồ sơ bệnh nhân</span>
+      <span class="pm-chip">🔐 Tài khoản truy cập</span>
+      <span class="pm-chip">📞 Thông tin liên hệ</span>
+    </div>
+    <div class="pm-dots">
+      <span class="dot active"></span><span class="dot"></span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="pm-section">
+  <div class="container pm-container">
+    <div class="pm-card">
+      <div class="pm-card-head">
+        <div>
+          <h2 class="pm-h2">Danh sách bệnh nhân</h2>
+          <p class="pm-sub">Quản lý hồ sơ và tài khoản bệnh nhân trong hệ thống.</p>
+        </div>
+        <button class="btn btn-primary pm-btn-add" onclick="openCreateModal()">
+          + Thêm bệnh nhân
+        </button>
+      </div>
+      <div id="content" class="pm-content"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="patientModal" class="modal" style="display:none">
+  <div class="modal-content pm-modal">
+    <h2 id="modalTitle" class="pm-modal-title">Thêm bệnh nhân</h2>
+    <div class="form-grid pm-form-grid">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="username">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email">
+      </div>
+      <div class="form-group">
+        <label>Họ tên</label>
+        <input type="text" id="fullName">
+      </div>
+      <div class="form-group">
+        <label>Số điện thoại</label>
+        <input type="text" id="phone">
+      </div>
+      <div class="form-group">
+        <label>Giới tính</label>
+        <select id="gender">
+          <option value="Nam">Nam</option>
+          <option value="Nữ">Nữ</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ngày sinh</label>
+        <input type="date" id="dob">
+      </div>
+    </div>
+    <div class="pm-modal-actions">
+      <button class="btn btn-primary" onclick="handleSavePatient()">Lưu</button>
+      <button class="btn" onclick="closeModal()">Hủy</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/patientmanage.api.js"></script>
+<script src="js/patientmanage.js"></script>
+<script>renderFooter();</script>
+</body>
+</html>
